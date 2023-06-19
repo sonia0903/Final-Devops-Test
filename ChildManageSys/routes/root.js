@@ -40,7 +40,7 @@ module.exports = async function (fastify, opts) {
       }
     } catch (error) {
       console.error(error);
-      reply.code(500).send('Internal Server Error!');
+      reply.code(500).send('Internal Server Error!!');
     }
   })
 
