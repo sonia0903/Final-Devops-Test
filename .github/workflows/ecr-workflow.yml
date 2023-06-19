@@ -30,9 +30,8 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR for Backend
       id: build-image
       env:
-        ECR_REGISTRY: 891456713314.dkr.ecr.ap-northeast-2.amazonaws.com
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_BACKEND:$IMAGE_TAG ./ChildManageSys
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY_BACKEND:$IMAGE_TAG
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY_BACKEND:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./ChildManageSys
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
